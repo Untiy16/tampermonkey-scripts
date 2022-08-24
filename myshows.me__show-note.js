@@ -2,7 +2,7 @@
 let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefined') { clearInterval(jQueryModInterval); (function($) {
 $(window).on('load', function(){
     'use strict';
-    alert(44);
+    alert(55);
     let showId = location.href.match('view\/[0-9]+/$')[0].split('/')[1];
 
     $(`<div class="custom-note"><textarea class="custom-note-text" placeholder="leave few words about this show"></textarea><div class="custom-note-content"></div><button class="custom-note-save">Save</button></div>`).insertAfter('.ShowDetails-original');
