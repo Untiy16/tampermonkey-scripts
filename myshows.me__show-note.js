@@ -1,5 +1,4 @@
 
-console.log('note');
 let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefined') { clearInterval(jQueryModInterval); (function($) {
     'use strict';
 
@@ -18,7 +17,6 @@ let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefi
         success: function(response){
             response = JSON.parse(response);
             if(response.status === 200){
-                console.log(response.data);
                 $textarea.val(response.data);
                 $content.html(response.data);
             }else{
