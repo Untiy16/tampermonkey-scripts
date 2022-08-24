@@ -1,15 +1,3 @@
-
-// ==UserScript==
-// @name         * - helpers
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  Helpers asnd scripts
-// @author       Untiy16
-// @match        *://*/*
-// @grant       GM_addStyle
-// @run-at       document-start
-// ==/UserScript==
-
 /* Files */
 // file:///F:/Projects/0Tampermonkey0/jquery-3.4.1-jQueryMod-noconflict.js
 // https://raw.githubusercontent.com/Untiy16/links/master/jquery-3.4.1-jQueryMod-noconflict.js
@@ -24,6 +12,3 @@ var script = document.createElement('script');
 script.innerText = code;
 document.body.appendChild(script);
 console.log('********** jQuery $ loaded successfully **********');
-
-
-
