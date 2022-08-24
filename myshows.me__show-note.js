@@ -1,5 +1,5 @@
 
-console.log('note);
+console.log('note');
 let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefined') { clearInterval(jQueryModInterval); (function($) {
     'use strict';
 
