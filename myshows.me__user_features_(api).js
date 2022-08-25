@@ -115,6 +115,7 @@ let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefi
             let userGenresAndFilterScpript = document.createElement('script');
             userGenresAndFilterScpript.innerText = userGenresAndFilterCode;
 
+            console.log(888);
             console.log(userGenresAndFilterScpript);
             document.body.appendChild(userGenresAndFilterScpript);
 
