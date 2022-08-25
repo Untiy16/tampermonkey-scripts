@@ -13,9 +13,9 @@ if(location.href.indexOf('/Untiy16') !== -1){
 let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefined') { clearInterval(jQueryModInterval); (function($) {
     'use strict';
 
-    $('.User-showsMore').click();
-
     let interval = setInterval(function(){
+        $('.User-showsMore').click();
+
         if(!$('.User-showsMore').length){
             clearInterval(interval);
             var hasUpdates = false;
