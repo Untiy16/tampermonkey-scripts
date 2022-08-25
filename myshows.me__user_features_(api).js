@@ -17,6 +17,7 @@ let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefi
         $('.User-showsMore').click();
 
         if(!$('.User-showsMore').length){
+            console.log(document.querySelectorAll('.User-showsMore') );
             clearInterval(interval);
             var hasUpdates = false;
             var showsByIds = {};
