@@ -252,6 +252,12 @@ GM_addStyle(`
     column-count: 5;
 }
 
+@media (max-width: 900px) {
+    .genresFilter ul{
+        column-count: 2;
+    }
+}
+
 .genresFilter ul li {
     display: flex;
     align-items: center;
