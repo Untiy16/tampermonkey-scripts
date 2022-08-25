@@ -111,7 +111,7 @@ let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefi
                 });
             }
 
-            let userGenresAndFilterCode = `window.filter = JSON.parse(${JSON.stringify(filter)}); window.genres = JSON.parse(${JSON.stringify(genres)});`;
+            let userGenresAndFilterCode = `window.filter = JSON.parse('${JSON.stringify(filter)}'); window.genres = JSON.parse('${JSON.stringify(genres)}');`;
             let userGenresAndFilterScpript = document.createElement('script');
             userGenresAndFilterScpript.innerText = userGenresAndFilterCode;
 
