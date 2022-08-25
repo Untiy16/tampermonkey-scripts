@@ -17,7 +17,6 @@ let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefi
         $('.User-showsMore').click();
 
         if(!$('.User-showsMore').length){
-            console.log(document.querySelectorAll('.User-showsMore') );
             clearInterval(interval);
             var hasUpdates = false;
             var showsByIds = {};
@@ -113,11 +112,9 @@ let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefi
             }
 
             let userGenresAndFilterCode = `window.filter = JSON.parse('${JSON.stringify(filter)}'); window.genres = JSON.parse('${JSON.stringify(genres)}');`;
-            let userGenresAndFilterScpript = document.createElement('script');
-            userGenresAndFilterScpript.innerHTML = userGenresAndFilterCode;
-
-            console.log(999);
-            document.body.appendChild(userGenresAndFilterScpript);
+            let userGenresAndFilterScript = document.createElement('script');
+            userGenresAndFilterScript.innerHTML = userGenresAndFilterCode;
+            document.body.appendChild(userGenresAndFilterScript);
 
             function sortByNestedText(parent, childSelector, keySelector) {
                 $(parent).each(function(){
