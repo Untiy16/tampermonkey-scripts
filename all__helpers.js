@@ -2,7 +2,7 @@
 // file:///F:/Projects/0Tampermonkey0/jquery-3.4.1-jQueryMod-noconflict.js
 // https://raw.githubusercontent.com/Untiy16/links/master/jquery-3.4.1-jQueryMod-noconflict.js
 // https://raw.githubusercontent.com/Untiy16/links/master/copyLinkText6.js?q=3
-//555
+//666
 
 let jQueryModScript= document.createElement('script');
 jQueryModScript.setAttribute('src','https://cdn.jsdelivr.net/gh/Untiy16/links@master/jquery-3.4.1-jQueryMod-noconflict.js');
