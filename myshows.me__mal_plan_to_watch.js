@@ -1,5 +1,4 @@
 let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefined') { clearInterval(jQueryModInterval); (function($) {
-$(window).on('load', function(){
 
     $('.User-showsMore').click();
 
@@ -108,8 +107,6 @@ $(window).on('load', function(){
     }, 300);
 
 
-
-});
 })(jQueryMod); } }, 100);
 
 GM_addStyle(`
