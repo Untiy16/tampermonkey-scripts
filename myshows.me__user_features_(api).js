@@ -14,7 +14,6 @@ let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefi
     'use strict';
 
     let interval = setInterval(function(){
-        $('.User-showsMore').click();
 
         if(!$('.User-showsMore').length){
             clearInterval(interval);

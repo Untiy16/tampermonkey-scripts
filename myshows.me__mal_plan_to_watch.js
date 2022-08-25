@@ -1,13 +1,3 @@
-// ==UserScript==
-// @name         myshows.me - MAL plan to watch
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
-// @author       You
-// @match        https://myshows.me/Untiy16
-// @grant        GM_addStyle
-// ==/UserScript==
-
 let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefined') { clearInterval(jQueryModInterval); (function($) {
 $(window).on('load', function(){
 
