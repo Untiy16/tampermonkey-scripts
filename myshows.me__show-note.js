@@ -1,7 +1,7 @@
 
 let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefined') { clearInterval(jQueryModInterval); (function($) {
-$(window).on('load', function(){
     console.log(555);
+$(window).on('load', function(){
     'use strict';
 
     let showId = location.href.match('view\/[0-9]+/$')[0].split('/')[1];
