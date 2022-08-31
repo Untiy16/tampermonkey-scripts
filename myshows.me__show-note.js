@@ -1,7 +1,7 @@
 
 let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefined') { clearInterval(jQueryModInterval); (function($) {
     console.log(555);
-$(window).on('load', function(){
+// $(window).on('load', function(){
     'use strict';
 
     let showId = location.href.match('view\/[0-9]+/$')[0].split('/')[1];
@@ -85,7 +85,7 @@ $(window).on('load', function(){
     });
 
 
-})
+// })
 })(jQueryMod); } }, 100);
 
 GM_addStyle(`
