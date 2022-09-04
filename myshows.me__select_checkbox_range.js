@@ -156,7 +156,7 @@ let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefi
 
 GM_addStyle(`
 
-    .custom-save{
+        .custom-save{
         display: none;
         margin-right: 20px;
         padding: 5px 20px;
@@ -185,11 +185,10 @@ GM_addStyle(`
         background-repeat: no-repeat;
         background-position: center;
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 0;
+        left: 0;
         background-size: 60%;
-        filter: invert(10%) sepia(99%) saturate(5661%) hue-rotate(5deg) brightness(92%) contrast(115%);
+        filter: invert(1);
     }
 
     .EpisodeWatchLabel_plus::before{
@@ -202,6 +201,8 @@ GM_addStyle(`
 
     .EpisodeWatchLabel[class*="EpisodeWatchLabel_"]{
         border-color: var(--myshows-color) !important;
+        background-color: var(--myshows-color) !important;
+        border: none !important;
     }
 
     .EpisodeWatchLabel[class*="EpisodeWatchLabel_"] svg{
