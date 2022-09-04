@@ -1,6 +1,7 @@
 console.log(888);
 console.log(window);
 let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefined' && window?.$nuxt?._isMounted) { clearInterval(jQueryModInterval); (function($) {
+console.log(111888);
 
 // $(window).on('load', function(){
     'use strict';
