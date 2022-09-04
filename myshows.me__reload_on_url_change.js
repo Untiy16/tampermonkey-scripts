@@ -6,6 +6,7 @@
     if (window.onurlchange === null) {
         window.addEventListener('urlchange', function(info){
             if(originalUrl !== info.url){
+                alert();
                 location.reload();
             }
         });
