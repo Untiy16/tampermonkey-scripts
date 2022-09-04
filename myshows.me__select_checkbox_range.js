@@ -1,7 +1,7 @@
 
 
 
-let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefined') { clearInterval(jQueryModInterval); (function($) {
+let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefined' && window?.$nuxt?._isMounted) { clearInterval(jQueryModInterval); (function($) {
     'use strict';
 
     $('.episodes-by-season__season .episodes-by-season__episode').each(function() {

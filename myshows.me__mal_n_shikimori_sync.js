@@ -1,5 +1,5 @@
 
-let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefined') { clearInterval(jQueryModInterval); (function($) {
+let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefined' && window?.$nuxt?._isMounted) { clearInterval(jQueryModInterval); (function($) {
 
     let isAnime = $('a[href*="/search/all/?genre=29"]').length || $('a[href*="/search/all/g-anime').length || $('.Note-content .Note-text').text() == 'anime' || $('.Note-content .Note-text').text()[0] == '[';
     let animeName = $('.ShowDetails .ShowDetails-original').text().trim();

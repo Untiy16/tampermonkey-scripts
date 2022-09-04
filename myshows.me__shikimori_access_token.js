@@ -1,6 +1,6 @@
 
 
-let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefined') { clearInterval(jQueryModInterval); (function($) {
+let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefined' && window?.$nuxt?._isMounted) { clearInterval(jQueryModInterval); (function($) {
     'use strict';
     let shikimoriAccessToken = localStorage.getItem('shikimori_access_token');
     let shikimoriRefreshToken = localStorage.getItem('shikimori_refresh_token');
