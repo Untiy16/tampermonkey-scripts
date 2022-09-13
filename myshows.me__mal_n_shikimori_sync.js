@@ -38,22 +38,56 @@ let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefi
 
         /* В этом блоке мы ищем текущее аниме на MAL и сохраняем в заметки id сезонов в правильном порядке  */
         if(!malShowsArray){
-            var animeListOnMal = false;
-            $('.ShowStatusBar-list .ShowStatusBar-option:contains("Смотрю")').on('click', function(){
+
+            function renderMALList(animeName) {
+                let animeListOnMal = false;
+                let animeListHtml = '';
+
                 $.ajax({
                     // url: 'https://api.jikan.moe/v3/search/anime?q=' + animeName,
-                    url: untiy16JikanHost + '/v3/search/anime?q=' + animeName,
+                    url: untiy16JikanHost + '/v4/anime?q=' + animeName,
                     type: 'GET',
                     async: false,
                     success: function( data ) {
-                        animeListOnMal = data.results;
+                        animeListOnMal = data.data;
                     },
                      error: function( data ) {
                         alert('jikan api error');
                     },
                 });
 
-                if(animeListOnMal && animeListOnMal.length){
+                if(animeListOnMal && animeListOnMal.length) {
+                    animeListOnMal.forEach(function(item){
+                        animeListHtml += `
+                            <div class="mal-search-item">
+                                <span class="mal-image" style="background-image: url('${item.images?.jpg.image_url}');"></span>
+                                <a class="mal-name" href="${item.url}">${item.title}</a>
+                                <div class="mal-checkbox-wrap">
+                                    <span data-mal-anime-id="${item.mal_id}"></span>
+                                    <label for="mal-anime${item.mal_id}"></label>
+                                    <input id="mal-anime${item.mal_id}" data-mal-anime-id="${item.mal_id}" data-episodes-count="${item.episodes}" type="checkbox" class="mal-input">
+                                </div>
+                            </div>
+                        `;
+                    });
+                } else {
+                    alert('MAL search return empty result!');
+                }
+
+                return animeListHtml;
+            }
+
+            $(document).on('click', '.mal-modal_search button', function() {
+                let q = $('.mal-modal_search input').val();
+                if(q) {
+                    $('.mal-search-items').html('').append(renderMALList($('.mal-modal_search input').val()));
+                }
+            });
+
+            $('.ShowStatusBar-list .ShowStatusBar-option:contains("Смотрю")').on('click', function() {
+
+                let animeListHtml = renderMALList(animeName);
+                if(animeListHtml){
 
                     let shiftIsPressed = false;
                     let shiftCount = 0;
@@ -72,21 +106,7 @@ let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefi
                         }
                     }
 
-                    let animeListHtml = '';
-                    animeListOnMal.forEach(function(item){
-                        animeListHtml += `
-                            <div class="mal-search-item">
-                                <span class="mal-image" style="background-image: url('${item.image_url}');"></span>
-                                <a class="mal-name" href="${item.url}">${item.title}</a>
-                                <div class="mal-checkbox-wrap">
-                                    <span data-mal-anime-id="${item.mal_id}"></span>
-                                    <label for="mal-anime${item.mal_id}"></label>
-                                    <input id="mal-anime${item.mal_id}" data-mal-anime-id="${item.mal_id}" data-episodes-count="${item.episodes}" type="checkbox" class="mal-input">
-                                </div>
-                            </div>
-                        `;
-                    });
-                    let $modal = $(`<div class="mal-modal"><div class="mal-modal_specials"></div><button disabled class="mal-modal_save-specials">Save specials</button><button disabled class="mal-modal_save-seasons">Save seasons <br> (hold Shift to split season)</button>${animeListHtml}<button disabled class="mal-modal_save-specials">Save specials</button><button disabled class="mal-modal_save-seasons">Save seasons</button></div><div class="mal-modal-overlay"></div>`);
+                    let $modal = $(`<div class="mal-modal"><div class="mal-modal_search"><input value="${animeName}"><button>Search</button></div><div class="mal-modal_specials"></div><button disabled class="mal-modal_save-specials">Save specials</button><button disabled class="mal-modal_save-seasons">Save seasons <br> (hold Shift to split season)</button><div class="mal-search-items">${animeListHtml}</div><button disabled class="mal-modal_save-specials">Save specials</button><button disabled class="mal-modal_save-seasons">Save seasons</button></div><div class="mal-modal-overlay"></div>`);
                     $('body').addClass('mal-modal-show').append($modal);
 
                     $('.mal-modal-overlay').on('click', function(){
@@ -102,7 +122,7 @@ let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefi
                         $(input).prop('checked', false);
                         alert('Все сезоны отмечены! Теперь вы можете сохранить результат.');
                     }
-                    $('.mal-modal input.mal-input').on('change', function(e){
+                    $(document).on('change', '.mal-modal input.mal-input', function(e){
                         if($(this).is(':checked')){
                             if(checkedSeasons < seasonsCount || shiftIsPressed){
                                 if(shiftIsPressed){
@@ -196,7 +216,7 @@ let jQueryModInterval = setInterval(function() { if(typeof jQueryMod !== 'undefi
                             $('.mal-modal_specials').append(specialsHtml);
                             dragBoxChecking();
 
-                            $('.mal-checkbox-wrap span').on('click', function(){
+                            $(document).on('click', '.mal-checkbox-wrap span', function(){
 
                                 if(!$(this).hasClass('mal-span-used') || confirm('Вы уверены? Вы уже использовали этот тайтл раннее.') ){
                                     let $inputs = $('.modal-special-input:checked');
@@ -748,6 +768,18 @@ GM_addStyle(`
     }
     .mal-modal button.mal-modal_save-specials{
         display: none;
+    }
+    
+    mal-modal_search {
+        margin-bottom: 15px;
+    }
+    .mal-modal_search button {
+        margin: 0 0 0 11px;
+        width: 70px;
+    }
+
+    .mal-modal_search input {
+        flex-grow: 1;
     }
 
     .episodes-by-season__season{
